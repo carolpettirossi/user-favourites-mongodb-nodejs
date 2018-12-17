@@ -49,7 +49,8 @@ exports.resolvers = {
 
         Bookmark.create(newBookmark, function(err, result){
           if (err)
-            if (err.code === 11000 ) return {"message": "fail"};
+            // Do not need to throw an error if it's duplicated. Just send a message. 
+            if (err.code === 11000 ) return {"message": "Duplicated bookmark id."};
             else throw new Error(err); 
         });
 
